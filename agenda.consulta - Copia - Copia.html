@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Consulta</title>
+    <style>
+        /* Estilo Geral */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            background: #ffebeb;
+            border: 1px solid #ff9999;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #cc0000;
+        }
+
+        p.informacao {
+            text-align: center;
+            background: #fff3f3;
+            border: 1px dashed #cc0000;
+            color: #990000;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ff9999;
+            border-radius: 5px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #cc0000;
+        }
+
+        #horarios {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .botao-horario {
+            background: #ff6666;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+
+        .botao-horario.selecionado {
+            background: #cc0000;
+        }
+
+        .botao-horario:hover {
+            background: #990000;
+        }
+
+        .botao {
+            width: 100%;
+            background: #cc0000;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .botao:hover {
+            background: #990000;
+        }
+
+        .mensagem {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .mensagem.sucesso {
+            background: #ccffcc;
+            color: #008000;
+        }
+
+        .mensagem.erro {
+            background: #ffcccc;
+            color: #cc0000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Agende sua consulta com o psicólogo</h1>
+        <p class="informacao">
+            Os agendamentos devem ser feitos com no mínimo <strong>2 dias de antecedência</strong>. 
+            Informe seu nome, número de WhatsApp, escolha a data e selecione um horário disponível.
+        </p>
+        <form id="agendamentoForm">
+            <label for="nome">Nome completo:</label>
+            <input type="text" id="nome" name="nome" placeholder="Digite seu nome" required>
+
+            <label for="whatsapp">Número do WhatsApp:</label>
+            <input type="text" id="whatsapp" name="whatsapp" placeholder="(DDD) 12345-6789" required>
+
+            <label for="data">Data da consulta:</label>
+            <input type="date" id="data" name="data" required>
+
+            <label for="horario">Escolha um horário:</label>
+            <div id="horarios">
+                <!-- Botões de horário gerados dinamicamente -->
+            </div>
+
+            <button type="submit" class="botao">Agendar</button>
+        </form>
+        <div id="mensagem" class="mensagem"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const horarios = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'];
+            const horarioContainer = document.getElementById('horarios');
+            const mensagem = document.getElementById('mensagem');
+
+            // Gerar botões de horário
+            horarios.forEach(horario => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.textContent = horario;
+                button.classList.add('botao-horario');
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('.botao-horario').forEach(btn => btn.classList.remove('selecionado'));
+                    button.classList.add('selecionado');
+                });
+                horarioContainer.appendChild(button);
+            });
+
+            // Validar e submeter o formulário
+            document.getElementById('agendamentoForm').addEventListener('submit', e => {
+                e.preventDefault();
+                const nome = document.getElementById('nome').value.trim();
+                const whatsapp = document.getElementById('whatsapp').value.trim();
+                const data = new Date(document.getElementById('data').value);
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0);
+
+                if (!document.querySelector('.botao-horario.selecionado')) {
+                    mensagem.textContent = 'Selecione um horário!';
+                    mensagem.className = 'mensagem erro';
+                    return;
+                }
+
+                if (data - hoje < 2 * 24 * 60 * 60 * 1000) { // 2 dias em milissegundos
+                    mensagem.textContent = 'O agendamento deve ser feito com pelo menos 2 dias de antecedência.';
+                    mensagem.className = 'mensagem erro';
+                    return;
+                }
+
+                mensagem.textContent = 'Consulta agendada com sucesso!';
+                mensagem.className = 'mensagem sucesso';
+            });
+        });
+    </script>
+</body>
+</html>

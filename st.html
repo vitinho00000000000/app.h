@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloco de Notas - Treinos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #e63946;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .note-form input, .note-form textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .note-form button {
+            background-color: #e63946;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .note-form button:hover {
+            background-color: #d62828;
+        }
+        .note-list {
+            margin-top: 30px;
+        }
+        .note-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .note-list li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        .back-btn {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin: 20px 0;
+            display: block;
+            width: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .back-btn:hover {
+            background-color: #d62828;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Bloco de Notas - Treinos</h1>
+
+<div class="container">
+    <h2>Adicione um Novo Treino</h2>
+    <form class="note-form" id="noteForm">
+        <input type="text" id="noteTitle" placeholder="Título do Treino" required>
+        <textarea id="noteContent" placeholder="Descrição do Treino" rows="6" required></textarea>
+        <button type="submit">Salvar Treino</button>
+    </form>
+
+    <div class="note-list" id="noteList">
+        <h3>Treinos Salvos:</h3>
+        <ul id="notes"></ul>
+    </div>
+    <button class="back-btn" onclick="window.location.href='index.html'">Voltar para a Página Inicial</button>
+</div>
+
+<footer>
+    <p>&copy; 2024 Health App. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    // Função para carregar os treinos salvos do localStorage
+    function loadNotes() {
+        const notes = JSON.parse(localStorage.getItem('notes')) || [];
+        const noteList = document.getElementById('notes');
+        noteList.innerHTML = '';  // Limpar a lista antes de adicionar os treinos
+
+        if (notes.length === 0) {
+            noteList.innerHTML = '<p>Nenhum treino salvo. Adicione treinos no bloco de notas.</p>';
+        } else {
+            notes.forEach((note, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>${note.title}</strong><br>
+                    <p>${note.content}</p>
+                `;
+                noteList.appendChild(li);
+            });
+        }
+    }
+
+    // Função para salvar um novo treino
+    function saveNote(event) {
+        event.preventDefault();
+
+        const noteTitle = document.getElementById('noteTitle').value;
+        const noteContent = document.getElementById('noteContent').value;
+
+        const newNote = {
+            title: noteTitle,
+            content: noteContent
+        };
+
+        // Obter treinos salvos do localStorage e adicionar o novo
+        const notes = JSON.parse(localStorage.getItem('notes')) || [];
+        notes.push(newNote);
+
+        // Salvar novamente no localStorage
+        localStorage.setItem('notes', JSON.stringify(notes));
+
+        // Limpar o formulário e recarregar a lista de treinos
+        document.getElementById('noteForm').reset();
+        loadNotes();
+    }
+
+    // Carregar os treinos ao carregar a página
+    loadNotes();
+
+    // Adicionar evento para salvar o treino
+    document.getElementById('noteForm').addEventListener('submit', saveNote);
+</script>
+
+</body>
+</html>

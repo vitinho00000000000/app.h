@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dieta Personalizada</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #e63946; /* Vermelho vibrante */
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 24px;
+            letter-spacing: 1px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        h2 {
+            color: #e63946;
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .meal-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .meal {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .meal:hover {
+            transform: translateY(-10px);
+        }
+        .meal img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #e63946;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #d62828;
+        }
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-size: 14px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .meal ul {
+            padding: 0;
+            list-style-type: none;
+        }
+        .meal li {
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .header-button {
+            background-color: #ffffff;
+            color: #e63946;
+            border: 2px solid #e63946;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        .header-button:hover {
+            background-color: #e63946;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Dieta Personalizada</h1>
+    <button class="header-button">Iniciar Dieta</button>
+</header>
+
+<div class="container">
+    <section id="manutencao">
+        <h2>Dieta para Manutenção</h2>
+        <div class="meal-list">
+            <div class="meal">
+               
+                <ul>
+                    <li>Café da manhã: Omelete de claras com aveia</li>
+                    <li>Ingredientes: 4 claras de ovo, 1 ovo inteiro, 50g de aveia</li>
+                    <li>Calorias: 350 kcal</li>
+                    <li>Execução: Prepare as claras e o ovo em uma frigideira antiaderente. Misture a aveia e sirva com frutas frescas.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+                
+                <ul>
+                    <li>Almoço: Frango grelhado com arroz integral e brócolis</li>
+                    <li>Ingredientes: 150g de peito de frango, 100g de arroz integral, 100g de brócolis</li>
+                    <li>Calorias: 500 kcal</li>
+                    <li>Execução: Grelhe o frango e cozinhe o arroz. Cozinhe os brócolis no vapor e sirva com o frango e arroz.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+               
+                <ul>
+                    <li>Jantar: Salada de atum com abacate</li>
+                    <li>Ingredientes: 1 lata de atum, 1 abacate, mix de folhas verdes</li>
+                    <li>Calorias: 400 kcal</li>
+                    <li>Execução: Misture o atum, o abacate cortado em cubos e as folhas verdes. Tempere com azeite e limão.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="emagrecimento">
+        <h2>Dieta para Emagrecimento</h2>
+        <div class="meal-list">
+            <div class="meal">
+                
+                <ul>
+                    <li>Café da manhã: Smoothie de proteína com frutas</li>
+                    <li>Ingredientes: 1 scoop de proteína, 1 banana, 100ml de leite desnatado</li>
+                    <li>Calorias: 300 kcal</li>
+                    <li>Execução: Bata todos os ingredientes no liquidificador e sirva imediatamente.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+                
+                <ul>
+                    <li>Almoço: Peito de frango grelhado com legumes</li>
+                    <li>Ingredientes: 150g de peito de frango, 150g de legumes variados</li>
+                    <li>Calorias: 400 kcal</li>
+                    <li>Execução: Grelhe o frango e cozinhe os legumes no vapor. Tempere com ervas a gosto.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+           
+                <ul>
+                    <li>Jantar: Peixe assado com quinoa e salada</li>
+                    <li>Ingredientes: 150g de peixe, 100g de quinoa, mix de folhas verdes</li>
+                    <li>Calorias: 450 kcal</li>
+                    <li>Execução: Asse o peixe e cozinhe a quinoa. Sirva com uma salada de folhas verdes.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="ganho">
+        <h2>Dieta para Ganho de Massa Muscular</h2>
+        <div class="meal-list">
+            <div class="meal">
+                
+                <ul>
+                    <li>Café da manhã: Panqueca de aveia com mel</li>
+                    <li>Ingredientes: 2 ovos, 50g de aveia, 1 colher de chá de mel</li>
+                    <li>Calorias: 400 kcal</li>
+                    <li>Execução: Misture os ingredientes e prepare as panquecas em uma frigideira antiaderente. Sirva com mel e frutas.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+              
+                <ul>
+                    <li>Almoço: Carne magra com batata doce e vegetais</li>
+                    <li>Ingredientes: 150g de carne magra, 150g de batata doce, 100g de vegetais</li>
+                    <li>Calorias: 600 kcal</li>
+                    <li>Execução: Grelhe a carne e cozinhe a batata doce. Sirva com vegetais cozidos.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+            <div class="meal">
+                
+                <ul>
+                    <li>Jantar: Frango com arroz integral e feijão</li>
+                    <li>Ingredientes: 150g de frango, 100g de arroz integral, 100g de feijão</li>
+                    <li>Calorias: 550 kcal</li>
+                    <li>Execução: Cozinhe o arroz e feijão. Grelhe o frango e sirva com arroz e feijão.</li>
+                </ul>
+                <button>Iniciar</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>&copy; 2024 Health App. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

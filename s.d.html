@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvar Dieta Personalizada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #e63946;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .meal-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .meal-form input, .meal-form select, .meal-form textarea {
+            margin: 10px 0;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .meal-form button {
+            background-color: #e63946;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .meal-form button:hover {
+            background-color: #d62828;
+        }
+        .meal-list {
+            margin-top: 30px;
+        }
+        .meal-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .meal-list li {
+            background-color: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Salvar Dieta Personalizada</h1>
+
+<div class="container">
+    <h2>Adicione uma Refeição</h2>
+    <form class="meal-form" id="mealForm">
+        <input type="text" id="mealName" placeholder="Nome da Refeição" required>
+        <input type="text" id="ingredients" placeholder="Ingredientes (separados por vírgula)" required>
+        <input type="text" id="calories" placeholder="Calorias" required>
+        <textarea id="instructions" placeholder="Instruções de Preparo" rows="4" required></textarea>
+        <button type="submit">Salvar Refeição</button>
+    </form>
+
+    <div class="meal-list" id="mealList">
+        <h3>Refeições Salvas:</h3>
+        <ul id="meals"></ul>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Health App. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+    // Função para carregar as refeições salvas do localStorage
+    function loadMeals() {
+        const meals = JSON.parse(localStorage.getItem('meals')) || [];
+        const mealList = document.getElementById('meals');
+        mealList.innerHTML = '';
+        meals.forEach((meal, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <strong>${meal.name}</strong><br>
+                Ingredientes: ${meal.ingredients}<br>
+                Calorias: ${meal.calories}<br>
+                Instruções: ${meal.instructions}
+            `;
+            mealList.appendChild(li);
+        });
+    }
+
+    // Função para salvar uma nova refeição
+    function saveMeal(event) {
+        event.preventDefault();
+
+        const mealName = document.getElementById('mealName').value;
+        const ingredients = document.getElementById('ingredients').value;
+        const calories = document.getElementById('calories').value;
+        const instructions = document.getElementById('instructions').value;
+
+        const newMeal = {
+            name: mealName,
+            ingredients: ingredients,
+            calories: calories,
+            instructions: instructions
+        };
+
+        // Obter refeições salvas do localStorage e adicionar a nova
+        const meals = JSON.parse(localStorage.getItem('meals')) || [];
+        meals.push(newMeal);
+
+        // Salvar novamente no localStorage
+        localStorage.setItem('meals', JSON.stringify(meals));
+
+        // Limpar o formulário e recarregar a lista de refeições
+        document.getElementById('mealForm').reset();
+        loadMeals();
+    }
+
+    // Carregar as refeições ao carregar a página
+    loadMeals();
+
+    // Adicionar evento para salvar refeição
+    document.getElementById('mealForm').addEventListener('submit', saveMeal);
+</script>
+
+</body>
+</html>

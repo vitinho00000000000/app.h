@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Health App</title>
+  <style>
+    /* Estilos gerais */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffe6e6; /* Fundo vermelho claro */
+    }
+
+    /* Container do formulário */
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Estilo do logotipo */
+    .login-container img {
+      width: 150px;
+      margin-bottom: 20px;
+    }
+
+    /* Título */
+    .login-container h1 {
+      font-size: 24px;
+      color: #cc0000; /* Vermelho escuro */
+      margin-bottom: 20px;
+    }
+
+    /* Campos de entrada */
+    .login-container input[type="email"],
+    .login-container input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    /* Botão de login */
+    .login-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #cc0000; /* Vermelho escuro */
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .login-container button:hover {
+      background-color: #a30000;
+    }
+
+    /* Link de recuperação */
+    .login-container a {
+      display: block;
+      margin-top: 15px;
+      color: #cc0000;
+      text-decoration: none;
+    }
+
+    .login-container a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <!-- Logotipo -->
+    <img src="017ad54b-08dd-422a-80d8-67a874f27656.jpg" alt="Health App Logo">
+    
+    <!-- Título -->
+    <h1>Diga Olá para Sua Saúde</h1>
+    
+    <!-- Formulário -->
+    <form id="loginForm">
+      <input type="email" placeholder="E-mail" required>
+      <input type="password" placeholder="Senha" required>
+      <button type="submit"><a href="menu.html" style="height: 30px;">entrar</a></button>
+    </form>
+    
+    <!-- Link de recuperação -->
+    <a href="#">Esqueceu sua senha?</a>
+  </div>
+
+  <script>
+    // Função de envio do formulário
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Login realizado com sucesso!');
+    });
+  </script>
+</body>
+</html>

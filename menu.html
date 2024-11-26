@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Health App - Dashboard</title>
+
+  <!-- Link para Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  
+  <!-- Link para Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    /* Reset e estilos gerais */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    /* Cabeçalho */
+    header {
+      background-color: #cc0000;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Container principal */
+    .dashboard {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      gap: 20px;
+    }
+
+    /* Cartões */
+    .card {
+      width: 300px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .card i {
+      font-size: 40px;
+      color: #cc0000;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    .card button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #cc0000;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .card button:hover {
+      background-color: #a30000;
+    }
+
+    /* Gráficos */
+    .charts {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    .chart-container {
+      margin: 20px 0;
+      padding: 20px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Informações da empresa */
+    .about {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .about h3 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .about p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #666;
+    }
+
+    /* Links de contato */
+    .contact {
+      margin-top: 20px;
+    }
+
+    .contact a {
+      color: #cc0000;
+      font-size: 16px;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s;
+    }
+
+    .contact a:hover {
+      color: #a30000;
+    }
+
+    /* Rodapé */
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      padding: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header>
+    Health App - Dashboard
+  </header>
+
+  <!-- Dashboard -->
+  <div class="dashboard">
+    <div class="card" onclick="navigateTo('agenda.consulta.html')">
+      <i class="fas fa-brain"></i>
+      <h3>Psicólogo</h3>
+      <p>Marque consultas com especialistas em saúde mental.</p>
+      <button>acessar</button>
+    
+    </div>
+    <div class="card" onclick="navigateTo('https://app.brancher.ai/5f971350-6e51-498d-b353-4db7a33637d4?utm_campaign=app_page%26utm_id=Z-daSOe2Ac0V')">
+      <i class="fas fa-apple-alt"></i>
+      <h3>Nutricionista</h3>
+      <p>Receba orientações personalizadas para sua dieta.</p>
+      <button>Acessar</button>
+    </div>
+    <div class="card" onclick="navigateTo('https://app.brancher.ai/8699306d-17ee-4543-92bb-d0ee4445694e?utm_campaign=app_page%26utm_id=Z-daSOe2Ac0V')">
+      <i class="fas fa-dumbbell"></i>
+      <h3>Personal Trainer</h3>
+      <p>Treine com um profissional que entende suas necessidades.</p>
+      <button>Acessar</button>
+    </div>
+    <div class="card" onclick="navigateTo('dietas.p.html')">
+      <i class="fas fa-utensils"></i>
+      <h3>Dietas</h3>
+      <p>Acompanhe dietas personalizadas.</p>
+      <button >Acessar</button>
+    </div>
+    <div class="card" onclick="navigateTo('treinsp.html')">
+      <i class="fas fa-running"></i>
+      <h3>Treinos</h3>
+      <p>Acompanhe seu progresso nos treinos.</p>
+      <button>Acessar</button>
+    </div>
+    <div class="card" onclick="navigateTo('s.d.html')">
+      <i class="fas fa-save"></i>
+      <h3>Salvar Dieta</h3>
+      <p>Salve sua dieta personalizada.</p>
+      <button>Acessar</button>
+    </div>
+    <div class="card" onclick="navigateTo('st.html')">
+      <i class="fas fa-save"></i>
+      <h3>Salvar Treino</h3>
+      <p>Salve seu treino e acompanhe seu progresso.</p>
+      <button>Acessar</button>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="charts">
+    <div class="chart-container">
+      <canvas id="evolutionChart"></canvas>
+    </div>
+  </div>
+
+  <!-- Sobre a Empresa -->
+  <div class="about">
+    <h3>Sobre a Empresa</h3>
+    <p>Health App é sua parceira para alcançar saúde e bem-estar.</p>
+    <p><strong>Missão:</strong> Levar saúde e praticidade, promovendo qualidade de vida e lucro ao melhorar a saúde das pessoas.</p>
+    <div class="contact">
+      <a href="https://www.instagram.com/seuperfil" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="tel:+5511999999999"><i class="fas fa-phone"></i> +55 11 99999-9999</a>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    © 2024 Health App - Todos os Direitos Reservados
+  </footer>
+
+  <script>
+    // Função para navegar
+    function navigateTo(link) {
+      window.location.href = link;
+    }
+
+    // Gráfico de evolução do progresso
+    const ctx = document.getElementById('evolutionChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Dia 1', 'Dia 2', 'Dia 3', 'Dia 4', 'Dia 5', 'Dia 6', 'Dia 7'],  // Cada dia de treino
+        datasets: [{
+          label: 'Progresso do Treino (Kg)',
+          data: [5, 10, 12, 15, 17, 18, 20],  // Progressão fictícia de peso
+          borderColor: '#cc0000',
+          backgroundColor: 'rgba(204, 0, 0, 0.2)',
+          fill: true,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { position: 'top' },
+          title: { display: true, text: 'Evolução de Progresso nos Treinos' }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
